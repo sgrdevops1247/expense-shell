@@ -31,10 +31,10 @@ dnf install nginx -y &>>$LOGFILE
 VALIDATE $? "Installing ngnix"
 
 systemctl enable nginx &>>$LOGFILE
-VALIDATE $? "Enabling Engnix"
+VALIDATE $? "Enabling ngnix"
 
 systemctl start nginx &>>$LOGFILE
-VALIDATE $? "Starting Engnix"
+VALIDATE $? "Starting ngnix"
 
 rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE $? "Removing existing content"
@@ -50,8 +50,8 @@ VALIDATE $? "Extracting Frontend code"
 cp /home/ec2-user/expense-shell/expense.conf /etc/ngnix/default.d/expense.conf &>>$LOGFILE
 VALIDATE $? "copied expense conf"
 
-systemctl restart ngnix &>>$LOGFILE
-VALIDATE $? "Restarting ngnix"
+systemctl restart nginx &>>$LOGFILE
+VALIDATE $? "Restarting nginx"
 
 
 
