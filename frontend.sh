@@ -33,27 +33,27 @@ fi
 dnf install nginx -y &>>$LOGFILE
 VALIDATE $? "Installing ngnix"
 
-systemctl enable nginx $LOGFILE
+systemctl enable nginx &>>$LOGFILE
 VALIDATE $? "Enabling Engnix"
 
-systemctl start nginx $LOGFILE
+systemctl start nginx &>>$LOGFILE
 VALIDATE $? "Starting Engnix"
 
-rm -rf /usr/share/nginx/html/* $LOGFILE
+rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE $? "Removing existing content"
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip $LOGFILE
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "Downloading front end code"
 
-cd /usr/share/nginx/html $LOGFILE
-unzip /tmp/frontend.zip $LOGFILE
+cd /usr/share/nginx/html &>>$LOGFILE
+unzip /tmp/frontend.zip &>>$LOGFILE
 VALIDATE $? "Extracting Frontend code"
 
 #check your repo and path
-cp /home/ec2-user/expense-shell/expense.conf /etc/ngnix/default.d/expense.conf $LOGFILE
+cp /home/ec2-user/expense-shell/expense.conf /etc/ngnix/default.d/expense.conf &>>$LOGFILE
 VALIDATE $? "copied expense conf"
 
-systemctl restart ngnix $LOGFILE
+systemctl restart ngnix &>>$LOGFILE
 VALIDATE $? "Restarting ngnix"
 
 
